@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>{dede:field.title/}-KRD</title>
+<meta name="keywords" content="{dede:field.keywords/}" />
+<meta name="description" content="{dede:field.description/}" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/main.css" rel="stylesheet" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/sliderkit-core.css" rel="stylesheet" />
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/slider.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/pageload.js"></script>
+</head>
+<body>
+{dede:include filename="_en_header.htm"/}
+<div class="wrapper">
+	<div class="fixed_width pos_center mt1px hw wshadow">
+		<div class="twocols_l">
+			<a class="xzzxen" href="/products/">DOWNLOADS</a>
+			<ul class="productlist">
+				<li><a class="pltype" href="#zlkzq">Tension Controller</a></li>
+				<li><a class="pltype" href="#jpkzq">Rectification Controller</a></li>
+				<li><a class="pltype" href="#other">Other Products</a></li>
+			</ul>
+{dede:include filename="_en-l-kefu.htm"/}
+		</div>
+		<div class="twocols_r">
+			<h2><em>{dede:field.position function="preg_replace('/.+?English/', '<a href=\'/en/\'>Home', preg_replace('/ > $/', '', @me))" /}</em>{dede:php}echo $refObj->Fields['typename'];{/dede:php}</h2>
+			<a name="zlkzq"></a>
+			<h3 class="bgrad">Tension Controller</h3>
+			<ul class="dllist">
+				<li>
+					<img class="dliconimg" src="/image-pro/zlkzq-ktc838a.jpg" />
+					<a class="lnk">全自动张力控制器KTC838A</a>
+					<a href="javascript:;" data-href="/download-pdf/KTC838A.pdf" class="dllnken">Download</a>
+				</li>
+				<li>
+					<img class="dliconimg" src="/image-pro/zlkzq-ktc828a.jpg" />
+					<a class="lnk">全自动张力控制器KTC-828A</a>
+					<a href="javascript:;" data-href="/download-pdf/KTC-828.pdf" class="dllnken">Download</a>
+				</li>
+				<li>
+					<img class="dliconimg" src="/image-pro/zlkzq-ktc818a.jpg" />
+					<a class="lnk">半自动张力控制器KTC818A自动演算型</a>
+					<a href="javascript:;" data-href="/download-pdf/KTC818A.pdf" class="dllnken">Download</a>
+				</li>
+				<li>
+					<img class="dliconimg" src="/image-pro/zlkzq-ktc812.jpg" />
+					<a class="lnk">半自动卷径张力控制器KTC-812</a>
+					<a href="javascript:;" data-href="/download-pdf/KTC-812.pdf" class="dllnken">Download</a>
+				</li>
+				<li>
+					<img class="dliconimg" src="/image-pro/zlkzq-ktc800a.jpg" />
+					<a class="lnk">手动张力控制器KTC800A</a>
+					<a href="javascript:;" data-href="/download-pdf/KTC800A.pdf" class="dllnken">Download</a>
+				</li>
+			</ul>
+			<div class="clear"></div>
+			<a name="jpkzq"></a>
+			<h3 class="bgrad">Rectification Controller</h3>
+			<ul class="dllist">
+				<li>
+					<img class="dliconimg" src="/image-pro/jpkzq-epc-a10.jpg" />
+					<a class="lnk">伺服纠偏控制系统EPC-A10</a>
+					<a href="javascript:;" data-href="/download-pdf/EPC-A10.pdf" class="dllnken">Download</a>
+				</li>
+				<li>
+					<img class="dliconimg" src="/image-pro/jpkzq-d12.jpg" />
+					<a class="lnk">智能型数字光电纠偏控制器EPC-D12</a>
+					<a href="javascript:;" data-href="/download-pdf/EPC-D12.pdf" class="dllnken">Download</a>
+				</li>	
+			</ul>
+			<div class="clear"></div>
+			<a name="other"></a>
+			<h3 class="bgrad">Other Products</h3>
+			<ul class="dllist">
+				<li>
+					<img class="dliconimg" src="/image-pro/zljp-tcepc.jpg" />
+					<a class="lnk">张力纠偏控制器TCEPC</a>
+					<a href="javascript:;" data-href="/download-pdf/TCEPC.pdf" class="dllnken">Download</a>
+				</li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+{dede:include filename="_en_footer.htm"/}
+</div>
+</body>
+</html>

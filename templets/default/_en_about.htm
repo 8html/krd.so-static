@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>{dede:field.title function="preg_replace('#.+?/\s+#', '', @me)" /}-KRD</title>
+<meta name="keywords" content="{dede:field.keywords/}" />
+<meta name="description" content="{dede:field.description/}" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/main.css" rel="stylesheet" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/sliderkit-core.css" rel="stylesheet" />
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/slider.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/pageload.js"></script>
+</head>
+<body>
+{dede:include filename="_en_header.htm"/}
+<div class="wrapper">
+	<div class="fixed_width pos_center mt1px hw wshadow">
+		<div class="twocols_l">
+			<a class="cpzxen" href="/products/">PRODUCTS</a>
+			<ul class="productlist">
+{dede:php}
+global $dsql;
+$dsql->SetQuery("SELECT * FROM `#@__arctype` WHERE `reid`=10 ORDER BY `sortrank` ASC");
+$dsql->Execute();
+$cccc=array();
+while($row=$dsql->GetArray()) {
+$cccc[]=$row;
+}
+for ($i=0; $i<count($cccc); $i++) {
+$ccccurl = GetOneTypeUrlA($cccc[$i]);
+echo "\t\t\t\t<li><a class=\"pltype\" href=\"".$ccccurl."\">".$cccc[$i]['typename']."</a></li>\n";
+$dsql->SetQuery("SELECT * FROM `#@__arctype` WHERE `reid`=".$cccc[$i]['id']." ORDER BY `sortrank` ASC");
+$dsql->Execute();
+while($row=$dsql->GetArray()) {
+$xxxxurl = GetOneTypeUrlA($row);
+echo "\t\t\t\t<li><a class=\"plsubtype\" href=\"".$xxxxurl."\">".$row['typename']."</a></li>\n";
+}
+}
+{/dede:php}
+			</ul>
+{dede:include filename="_en-l-kefu.htm"/}
+		</div>
+		<div class="twocols_r">
+{dede:php}
+$position = preg_replace('/.+?English/', '<a href=\'/en/\'>Home', preg_replace('/ > $/', '', $refObj->Fields['position']));
+switch ($refObj->TypeID) {
+
+case 9:
+echo <<<CONTENT
+			<h2><em>{$position}</em>About KRD</h2>
+			<img src="/templets/default/images/gsjj.jpg" width="762" height="398" />
+			<div class="aboutpage">
+				<p>Dongye Electromechanical Co.,Ltd (Kairuida, KRD) was established in 2000,which is specialized in R&D, manufacture and sales of the tension controller, deviation rectification controller, ultrasonic deviation rectification, tension detector, line-following deviation rectification and other industrial automatic controlling products. Our company is the specialist of industrial motion control and coil control. The brand of KRD includes the full-automatic tension control system and servo deviation rectification control system. We do the R&D by ourselves. They are of strong functions and high quality, also are on the advanced level. Nowadays they are already widely used in the industries of packing, printing, tag, papermaking, plastic, cable, non-woven fabrics, tire and rubber.</p>
+				<p>For years in the domestic market, Dongye Electromechanical Co.,Ltd (Kairuida, KRD) is devoting to enhancing the level of the automation control, adhering to the customers with long-term cooperation and common development objectives, focusing on the quality of the product and recognition in the market, and solving problems of the transmission and coil control. We are always pursuing innovation and can customize different kinds of industrial control products. Relying on the reliable quality and cost performance, our company has gained a good reputation in the domestic market of tension control and web guiding.</p>
+			</div>
+CONTENT;
+break;
+
+
+case 14:
+echo <<<CONTENT
+			<h2><em>{$position}</em>Feedback</h2>
+			<form action="/feedback.php" method="POST" class="bform">
+				<table>
+					<tr><td valign="top">Company name: <span style="color:red">*</span></td><td><input name="company" size="40" /></td></tr>
+					<tr><td valign="top">Contact person: <span style="color:red">*</span></td><td><input name="contact" size="40" /></td></tr>
+					<tr><td valign="top">Tel: </td><td><input name="phone" size="40" /></td></tr>
+					<tr><td valign="top">E-mail: <span style="color:red">*</span></td><td><input name="email" size="40" /></td></tr>
+					<tr><td valign="top">Address: </td><td><input name="address" size="40" /></td></tr>
+					<tr><td valign="top">Content: <span style="color:red">*</span></td><td><textarea name="content" cols="50" rows="10"></textarea></td></tr>
+					<tr><td></td><td><input type="submit" value="Send" />  <span style="color:red">*</span>: required</td></tr>
+				</table>
+			</form>
+CONTENT;
+break;
+
+
+case 15:
+echo <<<CONTENT
+			<h2><em>{$position}</em>Contact Us</h2>
+			<div class="contactpage">
+				<h3>Dongye Electromechanical Co.,Ltd (Kairuida, KRD)</h3>
+				<ul>
+					<li>Tel: 0757-22681566 13902564312</li>
+					<li>Fax: 0757-29280639</li>
+					<li>Address: 4 Floor, Unit 13, Tianfulai International Industrial City, Ronggui
+Town, Foshan, Guangdong</li>
+					<li>Zip Code: 528300</li>
+					<li>E-mail: krd@krd.so</li>
+				</ul>
+				<div class="cmap" style="height: 430px;width: 670px;margin: 0 auto;">
+				<iframe id="cmap" width="670" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://ditu.google.cn/maps?q=%E5%B9%BF%E4%B8%9C%E7%9C%81%E4%BD%9B%E5%B1%B1%E5%B8%82%E9%A1%BA%E5%BE%B7%E5%8C%BA%E5%AE%B9%E6%A1%82%E9%95%87%E5%A4%A9%E5%AF%8C%E6%9D%A5%E5%9B%BD%E9%99%85%E5%B7%A5%E4%B8%9A%E5%9F%8E%E4%B8%89%E6%9C%9F13%E5%BA%A74%E5%B1%82%EF%BC%88%E5%AE%B9%E9%87%8C%E5%85%AC%E5%9B%AD%E9%99%84%E8%BF%91%EF%BC%89(%E9%A1%BA%E5%BE%B7%E4%B8%9C%E5%8F%B6%E6%9C%BA%E7%94%B5%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%EF%BC%88%E5%87%AF%E7%91%9E%E8%BE%BE%EF%BC%89)%4022.773451,+113.296037&amp;hl=zh-CN&amp;sll=22.773451,113.296037&amp;sspn=0.007795,0.008669&amp;brcurrent=3,0x34024ed09f70f8c9:0xc00e0e23523ac264,0,0x340248b2ba983d31:0x726fbd60197a4f76%3B5,0,0&amp;t=m&amp;ie=UTF8&amp;ll=22.781167,113.29410&amp;spn=0.027698,0.036478&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://ditu.google.cn/maps?q=%E5%B9%BF%E4%B8%9C%E7%9C%81%E4%BD%9B%E5%B1%B1%E5%B8%82%E9%A1%BA%E5%BE%B7%E5%8C%BA%E5%AE%B9%E6%A1%82%E9%95%87%E5%A4%A9%E5%AF%8C%E6%9D%A5%E5%9B%BD%E9%99%85%E5%B7%A5%E4%B8%9A%E5%9F%8E%E4%B8%89%E6%9C%9F13%E5%BA%A74%E5%B1%82%EF%BC%88%E5%AE%B9%E9%87%8C%E5%85%AC%E5%9B%AD%E9%99%84%E8%BF%91%EF%BC%89(%E9%A1%BA%E5%BE%B7%E4%B8%9C%E5%8F%B6%E6%9C%BA%E7%94%B5%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%EF%BC%88%E5%87%AF%E7%91%9E%E8%BE%BE%EF%BC%89)%4022.773451,+113.296037&amp;hl=zh-CN&amp;sll=22.773451,113.296037&amp;sspn=0.007795,0.008669&amp;brcurrent=3,0x34024ed09f70f8c9:0xc00e0e23523ac264,0,0x340248b2ba983d31:0x726fbd60197a4f76%3B5,0,0&amp;t=m&amp;ie=UTF8&amp;ll=22.781167,113.29410&amp;spn=0.027698,0.036478&amp;z=14&amp;iwloc=A&amp;source=embed" style="color:#0000FF;text-align:left">View in Google Maps</a></small>
+				</div>
+			</div>
+CONTENT;
+break;
+
+}
+{/dede:php}
+		</div>
+		<div class="clear"></div>
+	</div>
+{dede:include filename="_en_footer.htm"/}
+</div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /download-pdf/
+Disallow: /en/
+Disallow: /image-pro/
+Disallow: /images/
+Disallow: /templets/
+
+Sitemap: http://www.krd.so/Sitemap.xml

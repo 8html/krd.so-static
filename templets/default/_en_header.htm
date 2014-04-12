@@ -1,0 +1,64 @@
+<div class="hc hw">
+	<div class="header fixed_width pos_center">
+		<a class="logo" href="/en/" title="KRD">KRD</a>
+		<div class="headlinks enheadlinks"><a href="/en/">Tension Controller</a> | <a href="/en/">Rectification Controller</a> | <a href="/">中文</a></div>
+		<div class="headtxt enheadtxt">Leading Company of Tension Control</div>
+	</div>
+	<div>
+		<div class="stripe1"></div>
+		<div class="stripe2"></div>
+		<div class="stripe3"></div>
+	</div>
+	<div class="grad1">
+		<div class="menu grad2 fixed_width">
+			<ul>
+				<li><a class="menuitem enmenu" href="/en/">Home</a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem enmenu" href="/en/about/">About</a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem enmenu menuext_p_1" href="/en/products/">Products</a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem enmenu" href="/en/application/">Application</a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem enmenu" href="/en/download/">Download</a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem enmenu" href="/en/news/">News</a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem enmenu" href="/en/feedback/">Feedback</a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem enmenu" href="/en/contact/">Contact Us</a></li>
+			</ul>
+			<div class="menuext_c_1 hidden">
+				<ol class="menuext">
+					<li><a class="submenuitem ensubmenu" href="/en/products/zlkzq/">Tension Controller</a></li>
+					<li><a class="submenuitem ensubmenu" href="/en/products/jpkzq/">Rectification Controller</a></li>
+					<li><a class="submenuitem ensubmenu" href="/en/products/other/">Other Products</a></li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$('a.menuitem').hover(function(){
+	$(this).parent().prev('.sep').addClass('sel');
+	$(this).parent().next('.sep').addClass('ser');
+},function(){
+	$(this).parent().prev('.sep').removeClass('sel');
+	$(this).parent().next('.sep').removeClass('ser');
+});
+$('.menuext_p_1, .menuext_c_1').hover(function(){
+	$('.menuext_p_1').parent().prev('.sep').addClass('sel');
+	$('.menuext_p_1').parent().next('.sep').addClass('ser');
+	$('.menuext_p_1').addClass('menuitem_sel');
+	$('.menuext_c_1').css({
+		position: 'absolute',
+		top: $('.menuext_p_1').position().top + $('.menuext_p_1').height() + 2,
+		left: $('.menuext_p_1').offset().left - $('.menu').offset().left - 22
+	}).removeClass('hidden');
+},function(){
+	$('.menuext_p_1').parent().prev('.sep').removeClass('sel');
+	$('.menuext_p_1').parent().next('.sep').removeClass('ser');
+	$('.menuext_p_1').removeClass('menuitem_sel');
+	$('.menuext_c_1').addClass('hidden');
+});
+</script>

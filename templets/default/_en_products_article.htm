@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>{dede:field.title/}-KRD</title>
+<meta name="keywords" content="{dede:field.keywords/}" />
+<meta name="description" content="{dede:field.description/}" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/main.css" rel="stylesheet" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/sliderkit-core.css" rel="stylesheet" />
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/etalage.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/slider.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/pageload.js"></script>
+</head>
+<body>
+{dede:include filename="_en_header.htm"/}
+<div class="wrapper">
+	<div class="fixed_width pos_center mt1px hw wshadow">
+		<div class="threecols_l">
+			<a class="cpzxen" href="/products/">PRODUCTS</a>
+			<ul class="productlist">
+{dede:php}
+global $dsql;
+$dsql->SetQuery("SELECT * FROM `#@__arctype` WHERE `reid`=10 ORDER BY `sortrank` ASC");
+$dsql->Execute();
+$cccc=array();
+while($row=$dsql->GetArray()) {
+$cccc[]=$row;
+}
+for ($i=0; $i<count($cccc); $i++) {
+$ccccurl = GetOneTypeUrlA($cccc[$i]);
+echo "\t\t\t\t<li><a class=\"pltype\" href=\"".$ccccurl."\">".$cccc[$i]['typename']."</a></li>\n";
+$dsql->SetQuery("SELECT * FROM `#@__arctype` WHERE `reid`=".$cccc[$i]['id']." ORDER BY `sortrank` ASC");
+$dsql->Execute();
+while($row=$dsql->GetArray()) {
+$xxxxurl = GetOneTypeUrlA($row);
+echo "\t\t\t\t<li><a class=\"plsubtype\" href=\"".$xxxxurl."\">".$row['typename']."</a></li>\n";
+}
+}
+{/dede:php}
+			</ul>
+{dede:include filename="_en-l-kefu.htm"/}
+		</div>
+		<div class="threecols_m">
+			<h2><em>{dede:field.position function="preg_replace('/.+?English/', '<a href=\'/en/\'>Home', preg_replace('/ > $/', '', @me))" /}</em>{dede:field.typename/}</h2>
+			<div class="tcml">
+				<ul id="etalage">
+					<li><img class="etalage_source_image" src="{dede:field.litpic/}" /></li>
+				</ul>
+			</div>
+			<div class="tcmr">
+				{dede:php}
+				global $restx;
+				$body = $refObj->Fields['body'];
+				
+				$restx=$body;
+				$pre=substr($restx,0,strpos($restx,"<hr />")?strpos($restx,"<hr />"):strlen($restx));
+				if(strlen($pre)==0)$pre="No Content.";
+				echo $pre;
+				{/dede:php}
+			</div>
+			<div class="tabbtns mt10px clear">
+				<ul>
+					<li><a href="javascript:;" class="tabbtn sel">Features</a></li>
+					<li><a href="javascript:;" class="tabbtn">Specifications</a></li>
+					<li><a href="javascript:;" class="tabbtn">Installation</a></li>
+					<li><a href="javascript:;" class="tabbtn">Manual</a></li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+			<div class="maincontent mt10px">
+				{dede:php}
+				global $restx;
+				
+				if(strpos($restx,"<hr />")===false)$restx="";
+				$restx=substr($restx,strpos($restx,"<hr />")+strlen("<hr />"));
+				$pre=substr($restx,0,strpos($restx,"<hr />")?strpos($restx,"<hr />"):strlen($restx));
+				if(strlen($pre)==0)$pre="No Content.";
+				echo "<div class=\"mc mc1\">".$pre."</div>";
+				
+				if(strpos($restx,"<hr />")===false)$restx="";
+				$restx=substr($restx,strpos($restx,"<hr />")+strlen("<hr />"));
+				$pre=substr($restx,0,strpos($restx,"<hr />")?strpos($restx,"<hr />"):strlen($restx));
+				if(strlen($pre)==0)$pre="No Content.";
+				echo "<div class=\"mc mc2 hidden\">".$pre."</div>";
+				
+				if (substr_count($restx,"<hr />")>=2) {
+					if(strpos($restx,"<hr />")===false)$restx="";
+					$restx=substr($restx,strpos($restx,"<hr />")+strlen("<hr />"));
+					$pre=substr($restx,0,strpos($restx,"<hr />")?strpos($restx,"<hr />"):strlen($restx));
+					if(strlen($pre)==0)$pre="No Content.";
+					echo "<div class=\"mc mc3 hidden\">".$pre."</div>";
+					
+					if(strpos($restx,"<hr />")===false)$restx="";
+					$restx=substr($restx,strpos($restx,"<hr />")+strlen("<hr />"));
+					if(strlen($restx)==0)$restx="No Content.";
+					echo "<div class=\"mc mc4 hidden\">".$restx."</div>";
+				} else {
+					echo "<div class=\"mc mc3 hidden\">No Content.</div>";
+					if(strpos($restx,"<hr />")===false)$restx="";
+					$restx=substr($restx,strpos($restx,"<hr />")+strlen("<hr />"));
+					if(strlen($restx)==0)$restx="No Content.";
+					echo "<div class=\"mc mc4 hidden\">".$restx."</div>";
+				}
+				{/dede:php}
+			</div>
+		</div>
+		<div class="threecols_r">
+			<div class="sidebox mt10px">
+				<div class="sbh">Hot-sale Products</div>
+				<div class="sbc sbc_hot">
+					<ul>
+					{dede:php}
+global $dsql;
+$dsql->SetQuery("SELECT id FROM `#@__arctype` WHERE `topid`=8");
+$dsql->Execute();
+$bT=array();
+while($row=$dsql->GetArray()) {
+	$bT[]=$row['id'];
+}
+
+$dsql->SetQuery("SELECT * FROM `#@__archives` WHERE `typeid` IN(".implode(',',$bT).") ORDER BY RAND() LIMIT 0,3");
+$dsql->Execute();
+while($row=$dsql->GetArray()) {
+$article=GetOneArchive($row['id']);
+echo "<li><a href=\"".$article['arcurl']."\" title=\"".$article['title']."\"><img src=\"".$article['litpic']."\" width=\"180\" height=\"180\" /><br />".mb_substr($article['title'], 0, 30, 'UTF-8')."</a></li>\n";
+}
+					{/dede:php}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+{dede:include filename="_en_footer.htm"/}
+</div>
+</body>
+</html>

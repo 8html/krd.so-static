@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>{dede:field.title function="preg_replace('#.+?/\s+#', '', @me)" /}-KRD</title>
+<meta name="keywords" content="{dede:field.keywords/}" />
+<meta name="description" content="{dede:field.description/}" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/main.css" rel="stylesheet" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/sliderkit-core.css" rel="stylesheet" />
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/slider.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/pageload.js"></script>
+</head>
+<body>
+{dede:include filename="_en_header.htm"/}
+<div class="wrapper">
+	<div class="fixed_width pos_center mt1px hw wshadow">
+		<div class="twocols_l">
+			<a class="cpzxen" href="/products/">PRODUCTS</a>
+			<ul class="productlist">
+{dede:php}
+global $dsql;
+$dsql->SetQuery("SELECT * FROM `#@__arctype` WHERE `reid`=10 ORDER BY `sortrank` ASC");
+$dsql->Execute();
+$cccc=array();
+while($row=$dsql->GetArray()) {
+$cccc[]=$row;
+}
+for ($i=0; $i<count($cccc); $i++) {
+$ccccurl = GetOneTypeUrlA($cccc[$i]);
+echo "\t\t\t\t<li><a class=\"pltype\" href=\"".$ccccurl."\">".$cccc[$i]['typename']."</a></li>\n";
+$dsql->SetQuery("SELECT * FROM `#@__arctype` WHERE `reid`=".$cccc[$i]['id']." ORDER BY `sortrank` ASC");
+$dsql->Execute();
+while($row=$dsql->GetArray()) {
+$xxxxurl = GetOneTypeUrlA($row);
+echo "\t\t\t\t<li><a class=\"plsubtype\" href=\"".$xxxxurl."\">".$row['typename']."</a></li>\n";
+}
+}
+{/dede:php}
+			</ul>
+{dede:include filename="_en-l-kefu.htm"/}
+		</div>
+		<div class="twocols_r">
+			<h2><em>{dede:field.position function="preg_replace('/.+?English/', '<a href=\'/en/\'>Home', preg_replace('/ > $/', '', @me))" /}</em>{dede:php}echo $refObj->Fields['typename'];{/dede:php}</h2>
+{dede:php}
+global $dsql;
+$dsql->SetQuery("SELECT * FROM `#@__arctype` WHERE `reid`=".$refObj->TypeID." ORDER BY `sortrank` ASC");
+$dsql->Execute();
+$cccc=array();
+while($row=$dsql->GetArray()) {
+$cccc[]=$row;
+}
+$onetype=false;
+if(count($cccc)==0) {
+$onetype=true;
+$cccc=array(array('typename'=>$refObj->Fields['typename'], 'id'=>$refObj->Fields['id']));
+}
+for ($i=0; $i<count($cccc); $i++) {
+
+
+$ccccurl = GetOneTypeUrlA($cccc[$i]);
+echo "\t\t\t\t<div class=\"pty\">\n";
+echo "\t\t\t\t\t<h3><a class=\"ptyrhl\" href=\"".$ccccurl."\">".$cccc[$i]['typename']."</a><a class=\"ptyrhr\" href=\"".$ccccurl."\">More...</a></h3>\n";
+
+if (!$onetype) {
+
+$dddd=array();
+$dsql->SetQuery("SELECT * FROM `#@__arctype` WHERE `reid`=".$cccc[$i]['id']." ORDER BY `sortrank` ASC");
+$dsql->Execute();
+while($row=$dsql->GetArray()) {
+$dddd[]=$row;
+}
+
+if(count($dddd)==0) {
+$onetype=true;
+$dddd=array(array('typename'=>$cccc[$i]['typename'], 'id'=>$cccc[$i]['id']));
+}
+
+for ($q=0; $q<count($dddd); $q++) {
+$ddddurl = GetOneTypeUrlA($dddd[$q]);
+echo "\t\t\t\t\t<h4><a class=\"ptyrhl2\" href=\"".$ddddurl."\">".$dddd[$q]['typename']."</a><a class=\"ptyrhr2\" href=\"".$ddddurl."\">More...</a></h4>\n";
+echo "\t\t\t\t\t\t<ul class=\"ptyrlist\">\n";
+$dsql->SetQuery("SELECT * FROM `#@__archives` WHERE `typeid`=".$dddd[$q]['id']." ORDER BY `click` DESC");
+$dsql->Execute();
+while($row=$dsql->GetArray()) {
+$article=GetOneArchive($row['id']);
+$article['arcurl'] = preg_replace('#^/\./#', '/', $article['arcurl']);
+echo "\t\t\t\t<li><a href=\"".$article['arcurl']."\"><img src=\"".$article['litpic']."\" width=\"170\" height=\"170\" /><br />".$article['title']."</a></li>\n";
+}
+echo "\t\t\t\t\t\t</ul>\n";
+echo "\t\t\t\t\t<div class=\"clear\"></div>\n";
+}
+
+} else {
+
+echo "\t\t\t\t\t\t<ul class=\"ptyrlist\">\n";
+$dsql->SetQuery("SELECT * FROM `#@__archives` WHERE `typeid`=".$cccc[$i]['id']." ORDER BY `click` DESC");
+$dsql->Execute();
+while($row=$dsql->GetArray()) {
+$article=GetOneArchive($row['id']);
+$article['arcurl'] = preg_replace('#^/\./#', '/', $article['arcurl']);
+echo "\t\t\t\t<li><a href=\"".$article['arcurl']."\"><img src=\"".$article['litpic']."\" width=\"170\" height=\"170\" /><br />".$article['title']."</a></li>\n";
+}
+echo "\t\t\t\t\t\t</ul>\n";
+echo "\t\t\t\t\t<div class=\"clear\"></div>\n";
+
+
+}
+
+echo "\t\t\t\t</div>\n";
+}
+{/dede:php}
+		</div>
+		<div class="clear"></div>
+	</div>
+{dede:include filename="_en_footer.htm"/}
+</div>
+</body>
+</html>

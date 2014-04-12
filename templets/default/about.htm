@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>{dede:field.title/}-凯瑞达KRD</title>
+<meta name="keywords" content="{dede:field.keywords/}" />
+<meta name="description" content="{dede:field.description/}" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/main.css" rel="stylesheet" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/sliderkit-core.css" rel="stylesheet" />
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/slider.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/pageload.js"></script>
+</head>
+<body>
+{dede:include filename="header.htm"/}
+<div class="wrapper">
+	<div class="fixed_width pos_center mt1px hw wshadow">
+		<div class="twocols_l">
+			<a class="cpzx" href="/products/">产品中心</a>
+			<ul class="productlist">
+{dede:php}
+global $dsql;
+$dsql->SetQuery("SELECT * FROM `#@__arctype` WHERE `reid`=2 ORDER BY `sortrank` ASC");
+$dsql->Execute();
+$cccc=array();
+while($row=$dsql->GetArray()) {
+$cccc[]=$row;
+}
+for ($i=0; $i<count($cccc); $i++) {
+$ccccurl = GetOneTypeUrlA($cccc[$i]);
+echo "\t\t\t\t<li><a class=\"pltype\" href=\"".$ccccurl."\">".$cccc[$i]['typename']."</a></li>\n";
+$dsql->SetQuery("SELECT * FROM `#@__arctype` WHERE `reid`=".$cccc[$i]['id']." ORDER BY `sortrank` ASC");
+$dsql->Execute();
+while($row=$dsql->GetArray()) {
+$xxxxurl = GetOneTypeUrlA($row);
+echo "\t\t\t\t<li><a class=\"plsubtype\" href=\"".$xxxxurl."\">".$row['typename']."</a></li>\n";
+}
+}
+{/dede:php}
+			</ul>
+{dede:include filename="l-kefu.htm"/}
+		</div>
+		<div class="twocols_r">
+{dede:php}
+$position = $refObj->Fields['position'];
+switch ($refObj->TypeID) {
+
+case 1:
+echo <<<CONTENT
+			<h2><em>{$position}</em>公司简介</h2>
+			<img src="/templets/default/images/gsjj.jpg" width="762" height="398" />
+			<div class="aboutpage">
+				<p><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 顺德东叶机电有限公司</b>（凯瑞达工控）成立于2000年，专业从事研发、生产和销售张力控制器、纠偏控制器、超声波纠偏、张力检测器、跟线纠偏等工控自动化产品，是工业运动控制、卷材控制的专家。公司自主研发的KRD（凯瑞达）全自动张力控制系统和伺服纠偏控制系统，性能强大，质量稳定，处于国内最尖端的水平，在包装、印刷、标签、造纸、塑料、线缆、无纺布、轮胎和橡胶等行业之中已广泛应用。</p>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 多年来，东叶机电（凯瑞达工控）一直致力于提高国内轻工制造业的自动化控制水准，秉承与客户长期合作共同发展的宗旨，专注于提高产品的品质及市场认可度，为客户解决传动和卷材控制领域问题做出我们的贡献。追求创新的我们，能根据客户要求，量身定做各种工业控制器。凭借可靠的产品质量和高性价比，东叶机电（凯瑞达工控）在国内的张力控制和纠偏控制已经取得良好的知名度和美誉度。</p>
+			</div>
+CONTENT;
+break;
+
+
+case 6:
+echo <<<CONTENT
+			<h2><em>{$position}</em>客户留言</h2>
+			<form action="/feedback.php" method="POST" class="bform">
+				<table>
+					<tr><td valign="top">公司名称： <span style="color:red">*</span></td><td><input name="company" size="40" /></td></tr>
+					<tr><td valign="top">联系人： <span style="color:red">*</span></td><td><input name="contact" size="40" /></td></tr>
+					<tr><td valign="top">电话：</td><td><input name="phone" size="40" /></td></tr>
+					<tr><td valign="top">E-mail： <span style="color:red">*</span></td><td><input name="email" size="40" /></td></tr>
+					<tr><td valign="top">地址：</td><td><input name="address" size="40" /></td></tr>
+					<tr><td valign="top">留言内容： <span style="color:red">*</span></td><td><textarea name="content" cols="50" rows="10"></textarea></td></tr>
+					<tr><td></td><td><input type="submit" value="发送" />  <span style="color:red">*</span>为必填。</td></tr>
+				</table>
+			</form>
+CONTENT;
+break;
+
+
+case 7:
+echo <<<CONTENT
+			<h2><em>{$position}</em>联系我们</h2>
+			<div class="contactpage">
+				<h3>佛山市顺德区东叶机电有限公司（凯瑞达工控）</h3>
+				<ul>
+					<li>联系电话：0757-22681566 13902564312</li>
+					<li>传真号码：0757-29280639</li>
+					<li>公司地址：广东省佛山市顺德区容桂镇天富来国际工业城三期13座4层</li>
+					<li>邮政编码：528300</li>
+					<li>电子邮箱：krd@krd.so</li>
+				</ul>
+				<div class="cmap" style="height: 430px;width: 670px;margin: 0 auto;">
+				<iframe id="cmap" width="670" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://ditu.google.cn/maps?q=%E5%B9%BF%E4%B8%9C%E7%9C%81%E4%BD%9B%E5%B1%B1%E5%B8%82%E9%A1%BA%E5%BE%B7%E5%8C%BA%E5%AE%B9%E6%A1%82%E9%95%87%E5%A4%A9%E5%AF%8C%E6%9D%A5%E5%9B%BD%E9%99%85%E5%B7%A5%E4%B8%9A%E5%9F%8E%E4%B8%89%E6%9C%9F13%E5%BA%A74%E5%B1%82%EF%BC%88%E5%AE%B9%E9%87%8C%E5%85%AC%E5%9B%AD%E9%99%84%E8%BF%91%EF%BC%89(%E9%A1%BA%E5%BE%B7%E4%B8%9C%E5%8F%B6%E6%9C%BA%E7%94%B5%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%EF%BC%88%E5%87%AF%E7%91%9E%E8%BE%BE%EF%BC%89)%4022.773451,+113.296037&amp;hl=zh-CN&amp;sll=22.773451,113.296037&amp;sspn=0.007795,0.008669&amp;brcurrent=3,0x34024ed09f70f8c9:0xc00e0e23523ac264,0,0x340248b2ba983d31:0x726fbd60197a4f76%3B5,0,0&amp;t=m&amp;ie=UTF8&amp;ll=22.781167,113.29410&amp;spn=0.027698,0.036478&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="http://ditu.google.cn/maps?q=%E5%B9%BF%E4%B8%9C%E7%9C%81%E4%BD%9B%E5%B1%B1%E5%B8%82%E9%A1%BA%E5%BE%B7%E5%8C%BA%E5%AE%B9%E6%A1%82%E9%95%87%E5%A4%A9%E5%AF%8C%E6%9D%A5%E5%9B%BD%E9%99%85%E5%B7%A5%E4%B8%9A%E5%9F%8E%E4%B8%89%E6%9C%9F13%E5%BA%A74%E5%B1%82%EF%BC%88%E5%AE%B9%E9%87%8C%E5%85%AC%E5%9B%AD%E9%99%84%E8%BF%91%EF%BC%89(%E9%A1%BA%E5%BE%B7%E4%B8%9C%E5%8F%B6%E6%9C%BA%E7%94%B5%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%EF%BC%88%E5%87%AF%E7%91%9E%E8%BE%BE%EF%BC%89)%4022.773451,+113.296037&amp;hl=zh-CN&amp;sll=22.773451,113.296037&amp;sspn=0.007795,0.008669&amp;brcurrent=3,0x34024ed09f70f8c9:0xc00e0e23523ac264,0,0x340248b2ba983d31:0x726fbd60197a4f76%3B5,0,0&amp;t=m&amp;ie=UTF8&amp;ll=22.781167,113.29410&amp;spn=0.027698,0.036478&amp;z=14&amp;iwloc=A&amp;source=embed" style="color:#0000FF;text-align:left">查看大图</a></small>
+				</div>
+			</div>
+CONTENT;
+break;
+
+}
+{/dede:php}
+		</div>
+		<div class="clear"></div>
+	</div>
+{dede:include filename="footer.htm"/}
+</div>
+</body>
+</html>

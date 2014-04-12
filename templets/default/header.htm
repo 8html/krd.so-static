@@ -1,0 +1,64 @@
+<div class="hc hw">
+	<div class="header fixed_width pos_center">
+		<a class="logo" href="http://www.krd.so/" title="凯瑞达">凯瑞达</a>
+		<div class="headlinks"><a href="http://www.krd.so/">张力控制器</a> | <a href="http://www.krd.so/">纠偏控制器</a> | <a href="http://www.krd.so/en/">English</a></div>
+		<div class="headtxt">Leading Company of Tension Control</div>
+	</div>
+	<div>
+		<div class="stripe1"></div>
+		<div class="stripe2"></div>
+		<div class="stripe3"></div>
+	</div>
+	<div class="grad1">
+		<div class="menu grad2 fixed_width">
+			<ul>
+				<li><a class="menuitem" href="http://www.krd.so/">首页<em>Home</em></a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem" href="http://www.krd.so/about/">公司简介<em>About</em></a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem menuext_p_1" href="http://www.krd.so/products/">产品中心<em>Products</em></a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem" href="http://www.krd.so/application/">产品应用<em>Application</em></a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem" href="http://www.krd.so/download/">下载中心<em>Download</em></a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem" href="http://www.krd.so/news/">新闻中心<em>News</em></a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem" href="http://www.krd.so/feedback/">客户留言<em>Feedback</em></a></li>
+				<li class="sep"></li>
+				<li><a class="menuitem" href="http://www.krd.so/contact/">联系我们<em>Contact Us</em></a></li>
+			</ul>
+			<div class="menuext_c_1 hidden">
+				<ol class="menuext">
+					<li><a class="submenuitem" href="http://www.krd.so/products/zlkzq/">张力控制系统</a></li>
+					<li><a class="submenuitem" href="http://www.krd.so/products/jpkzq/">纠偏控制系统</a></li>
+					<li><a class="submenuitem" href="http://www.krd.so/products/other/">其他类产品</a></li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$('a.menuitem').hover(function(){
+	$(this).parent().prev('.sep').addClass('sel');
+	$(this).parent().next('.sep').addClass('ser');
+},function(){
+	$(this).parent().prev('.sep').removeClass('sel');
+	$(this).parent().next('.sep').removeClass('ser');
+});
+$('.menuext_p_1, .menuext_c_1').hover(function(){
+	$('.menuext_p_1').parent().prev('.sep').addClass('sel');
+	$('.menuext_p_1').parent().next('.sep').addClass('ser');
+	$('.menuext_p_1').addClass('menuitem_sel');
+	$('.menuext_c_1').css({
+		position: 'absolute',
+		top: $('.menuext_p_1').position().top + $('.menuext_p_1').height() + 2,
+		left: $('.menuext_p_1').offset().left - $('.menu').offset().left - 22
+	}).removeClass('hidden');
+},function(){
+	$('.menuext_p_1').parent().prev('.sep').removeClass('sel');
+	$('.menuext_p_1').parent().next('.sep').removeClass('ser');
+	$('.menuext_p_1').removeClass('menuitem_sel');
+	$('.menuext_c_1').addClass('hidden');
+});
+</script>

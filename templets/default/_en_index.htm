@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title>KRD</title>
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<meta name="description" content="{dede:global.cfg_description/}" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/main.css" rel="stylesheet" />
+<link href="{dede:global.cfg_templets_skin/}/stylesheets/sliderkit-core.css" rel="stylesheet" />
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/jquery.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/slider.js"></script>
+<script type="text/javascript" src="{dede:global.cfg_templets_skin/}/scripts/pageload.js"></script>
+</head>
+<body>
+{dede:include filename="_en_header.htm"/}
+<div class="wrapper">
+	<div class="slide">
+		<div class="sliderkit slider">
+			<div class="sliderkit-panels">
+				<div class="sliderkit-panel"><img alt="张力控制器" src="/images/zlkzq.jpg" /></div>
+				<div class="sliderkit-panel"><img alt="纠偏控制器" src="/images/jpkzq.jpg" /></div>
+				<div class="sliderkit-panel"><img alt="张力检测器" src="/images/zljcq.jpg" /></div>
+				<div class="sliderkit-panel"><img alt="超声波纠偏" src="/images/csbjp.jpg" /></div>
+				<div class="sliderkit-panel"><img alt="跟线纠偏" src="/images/gxjp.jpg" /></div>
+			</div>
+			<div class="sliderkit-nav">
+				<div class="sliderkit-nav-clip">
+					<ul>
+						<li><a href="javascript:;"><img alt="张力控制器" src="/images/zlkzq.jpg" width="82" height="35" /></a></li>
+						<li><a href="javascript:;"><img alt="纠偏控制器" src="/images/jpkzq.jpg" width="82" height="35" /></a></li>
+						<li><a href="javascript:;"><img alt="张力检测器" src="/images/zljcq.jpg" width="82" height="35" /></a></li>
+						<li><a href="javascript:;"><img alt="超声波纠偏" src="/images/csbjp.jpg" width="82" height="35" /></a></li>
+						<li><a href="javascript:;"><img alt="跟线纠偏" src="/images/gxjp.jpg" width="82" height="35" /></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="indexqq">
+			<a href="/contact/" class="kefuzx">Services</a>
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1964506925&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:1964506925:41" alt="Consult me" title="Consult me"/></a>
+		</div>
+		<div class="sliderkit slider2">
+			<div class="sliderkit-panels">
+{dede:php}
+global $dsql;
+$dsql->SetQuery("SELECT * FROM `#@__archives` WHERE `typeid`=13 ORDER BY `pubdate` DESC LIMIT 0,80");
+$dsql->Execute();
+while($row=$dsql->GetArray()) {
+$article=GetOneArchive($row['id']);
+echo "\t\t\t\t<div class=\"sliderkit-panel\"><a href=\"".$article['arcurl']."\" title=\"".$article['title']."\">".$article['title']."</a></div>\n";
+}
+{/dede:php}
+			</div>
+		</div>
+	</div>
+	<div class="panel fixed_width pos_center">
+		<div class="comintro">
+			<a class="comintroheaden" href="/en/about/">ABOUT</a>
+			<div class="comintropic"></div>
+			<div class="cmpintrotxt">
+				Dongye Electromechanical Co.,Ltd (Kairuida,KRD) was established in 2000,which is specialized in R&amp;D, manufacture and sales industrial control &amp; automation products. Our company is the specialist of industrial motion control and coil control. They are of strong functions and high quality, also are on the advanced level.
+			</div>
+		</div>
+		<div class="comprodu">
+			<a class="comproduheaden" href="/en/products/">产品中心</a>
+			<div class="accordion1">
+				<div class="acc1">
+					<a class="accpic" href="javascript:;">1</a>
+					<div class="acctxt">张力控制器</div>
+				</div>
+				<div class="acccon">
+					<ul class="accconlist">
+						<li>张力控制器是一种由单片机或者一些嵌入式器件及外围电路开发而成的系统。</li>
+						<li><a href="/en/products/zlkzq/">更多张力控制</a></li>
+					</ul>
+					<div class="accconimg"><img alt="张力控制器" src="/images/index-zlkzq-ktc868c.jpg" width="176" height="128" /></div>
+				</div>
+			</div>
+			<div class="accordion2">
+				<div class="acc2">
+					<a class="accpic" href="javascript:;">2</a>
+					<div class="acctxt">纠偏控制器</div>
+				</div>
+				<div class="acccon">
+					<ul class="accconlist">
+						<li>纠偏控制器可对各种卷材进行纠偏工作。</li>
+						<li><a href="/en/products/jpkzq/">更多纠偏控制器</a></li>
+					</ul>
+					<div class="accconimg"><img alt="纠偏控制器"src="/images/index-jpkzq-epc-a10.jpg" width="176" height="128" /></div>
+				</div>
+			</div>
+			<div class="accordion3">
+				<div class="acc3">
+					<a class="accpic" href="javascript:;">3</a>
+					<div class="acctxt">其他类产品</div>
+				</div>
+				<div class="acccon">
+					<ul class="accconlist">
+						<li>凯瑞达相关张力控制器与纠偏控制器的其他类产品</li>
+						<li><a href="/en/products/other/">更多其他类产品</a></li>
+					</ul>
+					<div class="accconimg"><img alt="超声波纠偏" src="/images/index-cflhq-pc.jpg" width="176" height="128" /></div>
+				</div>
+			</div>
+		</div>
+	</div>
+{dede:include filename="_en_footer.htm"/}
+</div>
+</body>
+
+</html>
